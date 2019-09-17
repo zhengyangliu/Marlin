@@ -814,8 +814,8 @@ void minkill(const bool steppers_off/*=false*/) {
       #endif
     }
 
-    void(*resetFunc)(void) = 0; // Declare resetFunc() at address 0
-    resetFunc();                // Jump to address 0
+    void (*resetFunc)() = 0;  // Declare resetFunc() at address 0
+    resetFunc();                  // Jump to address 0
 
   #else // !HAS_KILL
 
@@ -982,8 +982,7 @@ void setup() {
   #endif
 
   #if ENABLED(SDSUPPORT)
-    // Auto-mount the SD
-    card.initsd();
+    card.mount(); // Mount the SD card before settings.first_load
   #endif
 
   // Load data from EEPROM if available (or use defaults)
